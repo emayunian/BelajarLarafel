@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('kategory',function(){
+	return "hello user with id";
+});
+
+Route::resource('kategory', 'KategoryController');
+
+
+
+
+

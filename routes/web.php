@@ -21,6 +21,13 @@ Route::get('kategory',function(){
 
 Route::resource('kategory', 'KategoryController');
 
+Route::get('layout',function(){
+    return view('layout.master');
+});
+
+Route::get('dashboard',function(){
+    return view('dashboard.index');
+});
 
 
 

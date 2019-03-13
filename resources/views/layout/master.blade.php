@@ -12,6 +12,9 @@
         <tr>
                 <th> @include('layout.sidebar')</th>
                 <th>@yield('content')</th> 
+                <th> @include('layout.mainfooter')</th>
+                <th> @include('layout.mainheader')</th>
+                <th> @include('layout.mainsidebar')</th>
              </tr>
             
             

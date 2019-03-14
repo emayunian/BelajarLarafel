@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,10 +50,63 @@
   <aside class="main-sidebar">
         @include('layout.mainsidebar')
   </aside>
+  
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-        @yield('content')
+
+        
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Kategory Rental Film</h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+<table border="1" width="100%">
+		<tr>
+			<th>ID</th>
+			<th>Nama Kategori</th>
+			<th>SLUG</th>
+			<th>Tanggal Input</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+			<th>Opsi</th>
+		</tr>
+		@foreach($kategory as $kategory)
+		<tr>
+      <td>{{ $kategory->id }}</td>
+			<td>{{ $kategory->nama_kategory }}</td>
+			<td>{{ $kategory->slug }}</td>
+			<td>{{ $kategory->tanggal_input_data }}</td>
+      <td>{{ $kategory->created_at }}</td>
+      <td>{{ $kategory->updated_at }}</td>
+			<td>
+				<a href="/kategory/edit/{{ $kategory->id }}">Edit</a>
+				|
+				<a href="/kategory/hapus/{{ $kategory->id }}">Hapus</a>
+			</td>
+		</tr>
+		@endforeach
+	</table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

@@ -15,7 +15,7 @@ class KategoryController extends Controller
     public function index()
     {
         $kategory = modelKategory::all();
-        return view('kategory',compact('kategory'));
+        return view('category.index',compact('kategory'));
     }
     
         
@@ -97,6 +97,11 @@ class KategoryController extends Controller
     {
         //memanggil view tambah
         return view('tambah');
+    }
+    public function search(Request $request){
+        $cari = $request->get('search');
+        $kategorys = Kategory::where('id','LIKE','%'.$cari.'%')->paginate(10);
+        return view('kategory.index',compact('kategorys'));
     }
 }
 

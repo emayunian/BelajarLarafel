@@ -43,9 +43,9 @@ body {
             <td>{{ $kategory->created_at }}</td>
             <td>{{ $kategory->updated_at }}</td>
 			<td>
-				<a href="/kategory/edit/{{ $kategory->id }}">Edit</a>
+				<a href="/kategory/edit/{{ $kategorys->id }}">Edit</a>
 				|
-				<a href="/kategory/hapus/{{ $kategory->id }}">Hapus</a>
+				<a href="/kategory/hapus/{{ $kategorys->id }}">Hapus</a>
 			</td>
 		</tr>
 		@endforeach

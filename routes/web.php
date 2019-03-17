@@ -37,6 +37,17 @@ Route::get('tabel',function(){
     return view('category.index');
 });
 
+Route::post('inputdata/store','KategoryController@store');
+
+Route::get('/hapus/destroy/{id}','KategoryController@destroy');
+
+Route::post('/datakategori/update','KategoryController@update');
+
+Route::get('/edit/edit/{id}','KategoryController@edit');
+
+Route::get('query', 'KategoryController@search');
+
+
 
 
 

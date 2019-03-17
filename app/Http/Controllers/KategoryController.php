@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\modelKategory;
+use Illuminate\Support\Facades\DB;
 
 class KategoryController extends Controller
 {
@@ -16,6 +17,12 @@ class KategoryController extends Controller
     {
         $kategory = modelKategory::all();
         return view('category.index',compact('kategory'));
+    }
+     public function search(Request $request)
+    {
+        $query = $request->input('cari');
+        $hasil = modelKategory::where('nama_kategory', 'LIKE', '%' . $query . '%')->paginate(10);
+        return view('category.result', compact('hasil', 'query'));
     }
     
         
@@ -42,7 +49,9 @@ class KategoryController extends Controller
         DB::table('kategory')->insert([
             'nama_kategory' => $request->nama_kategory,
             'slug' => $request->slug,
-            'tanggal_input_data' => $request->tanggal_input_data
+            'tanggal_input_data' => $request->tanggal_input_data,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at
         ]);
         //alihkan halaman ke halaman film
         return redirect('/kategory');
@@ -68,7 +77,8 @@ class KategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+         $kategori = DB::table('kategory')->where('id',$id)->get();
+        return view('dashboard.edit',['kategory' => $kategory]);
     }
 
     /**
@@ -80,7 +90,12 @@ class KategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          DB::table('kategory')->where('id',$request->id)->update([
+            'nama_kategory' => $request->nama_kategory,
+            'remarks' => $request->remarks
+            
+            ]);
+            return redirect('/kategory');
     }
 
     /**
@@ -91,17 +106,10 @@ class KategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+         DB::table('kategory')->where('id',$id)->delete();
+        return redirect('/kategory');
     }
-    public function tambah()
-    {
-        //memanggil view tambah
-        return view('tambah');
-    }
-    public function search(Request $request){
-        $cari = $request->get('search');
-        $kategorys = Kategory::where('id','LIKE','%'.$cari.'%')->paginate(10);
-        return view('kategory.index',compact('kategorys'));
-    }
+   
+
 }
 
